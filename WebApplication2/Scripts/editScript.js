@@ -202,6 +202,29 @@ function saveTextAreaValue(id) {
     let textAreaName = `#textArea` + id;
     let textAreaValue = $(textAreaName).val();
 }
+function addContent(id) {
+    let saveButtonName = `#addContent` + id;
+    let textAreaName = `#textArea` + id;
+    let editContentName = "#editContent" + id;
+    $(editContentName).toggle();
+    $(saveButtonName).toggle();
+    $(textAreaName).toggle();
+    saveTextAreaValue(id);
+    $.ajax({
+        url: '/DocumentConstructorLeftDatas/Edit/' + id,
+        type: 'Post',
+        data: data,
+        success: function (response) {
+            console.log('Успех');
+            console.log(id);
+            console.log(data.Title);
+            $(`.` + id).text(data.Title);
+        },
+        error: function (xhr, status, error) {
+            console.error('Ошибка:', id);
+        }
+    })
+}
 //$(`.editContent`).click(
    
 //    function () {

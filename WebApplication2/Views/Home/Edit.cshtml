@@ -88,7 +88,7 @@
                         <div style="display:flex">
                             <textarea id="@(textArea+@item.DocumentConstructorLeftDataId)" class="hidden"></textarea>
                             <i class="fas fa-edit editContent" onclick="showTextArea(@item.DocumentConstructorLeftDataId)" id="@("editContent"+ item.DocumentConstructorLeftDataId)" style="color: #d3d3d3; margin-left: 10px;"></i>
-                            <i class="fas fa-save hidden " id="@("addContent"+ item.DocumentConstructorLeftDataId )" style="margin:10px"></i>
+                            <i class="fas fa-save hidden " id="@("addContent"+ @item.DocumentConstructorLeftDataId )" style="margin:10px" onclick="addContent(@item.DocumentConstructorLeftDataId)"></i>
                         </div>
                                          </div>
 
