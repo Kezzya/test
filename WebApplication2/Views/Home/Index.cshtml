@@ -1,0 +1,304 @@
+﻿@model IEnumerable<WebApplication2.Models.DocumentConstructorLeftData>
+@{
+
+    ViewBag.Title = "Режим просмотра";
+    <link rel="stylesheet" href="~/Content/index.css" type="text/css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    var size = "size";
+}
+
+<main>
+    <div class="header-content">
+        <p style="color: #2a2254; ">Бизнес план</p>
+    </div>
+
+    <div><p></p></div>
+    <div class="main-blocks" style="display:flex">
+        <div class="left-content">
+            <div style="display:flex">
+                <div style=" padding-right: 20px;">
+
+                    @foreach (var item in Model)
+                    {
+
+
+                        <div style="display:flex" id="divForModelItems">
+
+                            <div>
+                                <span class="@(size + @item.SizeTitle)" id="@item.DocumentConstructorLeftDataId"> @Html.DisplayFor(modelItem => item.Title)</span>
+                            </div>
+
+                            <div class="@item.DocumentConstructorLeftDataId hidden">
+                                <input type="text" value="@item.Title" id="@item.DocumentConstructorLeftDataId" />
+                                <i class="fas fa-save saveEdit" style="margin:10px"></i>
+                            </div>
+
+                            <div class="list-buttons hidden">
+                                @*// onclick=" POSTEditLeftData(@item.DocumentConstructorLeftDataId)"*@
+                                <i class="fas fa-edit editLeft" onclick="handleEdit(@item.DocumentConstructorLeftDataId)" style="color: #8E8E93;"></i>
+                                <i class="fas fa-arrow-up NppUp" style="color: #8E8E93;" data-id="@item.DocumentConstructorLeftDataId"></i>
+                                <i class="fas fa-arrow-down NppDown" style="color: #8E8E93" ; data-id=" @item.DocumentConstructorLeftDataId"></i>
+                                <i class="fas fa-arrow-left SizeTitleUp" style="color: #8E8E93;" data-size="@item.SizeTitle" data-id="@item.DocumentConstructorLeftDataId"></i>
+                                <i class="fas fa-arrow-right SizeTitleDown" style="color: #8E8E93;" data-size="@item.SizeTitle" data-id="@item.DocumentConstructorLeftDataId"></i>
+                                <i class="fas fa-trash delete" style="color: #8E8E93;" onclick="POSTDeleteLeftData(@item.DocumentConstructorLeftDataId)"> </i>
+                            </div>
+                        </div>
+                    }
+                </div>
+                @*<div class="list-buttons box">
+                        <i class="fas fa-edit " style="color: #8E8E93;"></i>
+                        <i class="fas fa-arrow-up " style="color: #8E8E93;"></i>
+                        <i class="fas fa-arrow-down" style="color: #8E8E93;"></i>
+                        <i class="fas fa-arrow-left" style="color: #8E8E93;"></i>
+                        <i class="fas fa-arrow-right" style="color: #8E8E93;"></i>
+                        <i class="fas fa-trash" style="color: #8E8E93;"></i>
+                    </div>*@
+            </div>
+
+            @*<div><span>Анализ рынка и позиционирование</span></div>
+            <div>
+
+                <ul>
+                    Потребительские сегменты
+                </ul>
+                <ul>
+                    Ключевые потребности целевых клиентов
+                </ul>
+
+                <ul style="margin-bottom:20px">
+                    Конкурентный анализ
+                </ul>
+            </div>
+            <div>Продукты и услуги (UTP)</div>
+            <div>Маркетинг и продажи</div>
+            <div>Производство и основные процессы</div>
+            <div>Финансовое планирование</div>
+            <div>Анализ бизнес плана</div>
+            <div>Стратегии роста</div>
+            <div>Управление рисками</div>*@
+
+        </div>
+
+        <div class="center-content">
+            <div class="center-content-header">
+                <div>Бизнес план "Кулинария на ул. Островского" </div>
+                <div style="margin-left:auto; font-weight:bold">
+                    <span style="margin-right:10px">1 из 10</span>
+                    @*<i class="fas fa-edit " style="color: #d3d3d3;"></i>*@
+                </div>
+
+            </div>
+            <div style=" padding: 4%;">
+                <p style="font-size:18px;font-weight:bold">Описание бизнеса</p>
+                <div style="display:flex">
+                    <div style="flex:1">
+                        <p style="font-size:12px;  ">
+                            Кулинария занимает удобное положение между фаст-фудом и продуктовым магазином. Это место, где можно быстро и не переплачивая отведать вкусной домашней еды. Посетители кулинарных магазинов - те, у кого нет времени, навыков или просто желнания готовить дома. <br />
+                            Бизнес нельзя отнести к простым, как и любое дело, связанное с общественным питанием. Как правило, его открывают люди с опытом в индустрии: менеджеры, повара, технологи.
+                        </p>
+                    </div>
+                    <div>
+                        @*<i class="fas fa-edit " style="color: #d3d3d3; margin-left: 10px;"></i>*@
+                    </div>
+                    <p style="font-size:14px;">
+                </div>
+
+                <div style="display:flex;">
+                    <div style="border: solid 0.1px #c8c8c8; padding: 1%; box-shadow: 0px 4px 5px #c8c8c8 inset; font-size: 12px; flex:1">
+                        <p>Сумма первоначальных инвестиций - 1 710 000 рублей;</p>
+                        <p>Ежемесячные затраты - <span style="color:blue">730 991</span> рублей;</p>
+                        <p>Ежемесячная прибыль - 133 783 рублей;</p>
+                        <p>Срок окупаемости - 16 месяцев;</p>
+                        <p>Точка безубыточности - 3 месяца;</p>
+                        <p>Рентабельность продаж - 21%.</p>
+                    </div>
+                    <div style="margin-left: auto;  ">
+                        @*<i class="fas fa-edit " style="color: #d3d3d3; margin-left:10px;"></i>*@
+                    </div>
+                    <!--</div>
+                    <div class="wrapper">-->
+                    @*<i class="fas fa-cog" style="color: #000000; float:left"></i>*@
+
+
+                    <!--<div style="display: flex;">
+
+                        <div class="grey-font">
+                            id Показателя
+                        </div>
+                        <div class="grey-border">
+                            574482
+                        </div>
+                    </div>
+                    <div style="display:flex">
+                        <div class="grey-font">
+                            Тип вывода
+                        </div>
+                        <select name="output-type" class="grey-border">
+                            <option value="">Ост/Коне</option>
+
+                        </select>
+                    </div>
+                    <div style="display:flex">
+                        <div class="grey-font">
+                            Сценарий
+                        </div>
+                        <select name="scenario" class="grey-border">
+                            <option value="">--</option>
+
+                        </select>
+                    </div>
+                    <div style="display:flex">
+                        <div class="grey-font">
+                            Период
+                        </div>
+                        <select name="period" class="grey-border">
+                            <option value="">Текущий</option>
+
+                        </select>
+                    </div>-->
+                </div>
+
+            </div>
+
+        </div>
+        <div class="right-content">
+            <div class="right-content-header">
+                <img src="~/Images/closeIcon.png" width="42px" style="margin-top: 20px; margin-right: 10px;" />
+            </div>
+            <div>
+                <div class=" right-main-wrapper">
+                    <div class="right-blocks-wrapper">
+                        <div>
+                            <img src="~/Images/text.png" width="35px" height="35px" />
+                        </div>
+
+                        <div>
+                            <span>Текст</span>
+                        </div>
+
+                    </div>
+                    <div class="right-blocks-wrapper">
+                        <div>
+                            <img src="~/Images/picture.png" width="45px" height="35px" />
+                        </div>
+
+                        <div>
+                            <span>Картинка</span>
+                        </div>
+
+                    </div>
+                    <div class="right-blocks-wrapper">
+                        <div>
+                            <img src="~/Images/report.png" width="30px" height="40px" />
+                        </div>
+
+                        <div>
+                            <span>Отчет</span>
+                        </div>
+
+                    </div>
+                    <div class="right-blocks-wrapper">
+                        <div>
+                            <img src="~/Images/plot.png" width="40px" height="35px" />
+                        </div>
+
+                        <div>
+                            <span>График</span>
+                        </div>
+
+                    </div>
+                    <div class="right-blocks-wrapper">
+                        <div>
+                            <img src="~/Images/bpmn.png" width="46px" height="40px" />
+                        </div>
+
+                        <div>
+                            <span>Схема</span>
+                        </div>
+
+                    </div>
+                </div>
+                <div id="rectangle"></div>
+                <div class=" right-main-wrapper">
+                    <div class="right-blocks-wrapper">
+                        <div>
+                            <img src="~/Images/pageBrake.png" width="35px" height="35px" />
+                        </div>
+
+                        <div>
+                            <span>Страница</span>
+                        </div>
+
+                    </div>
+                    <div class="right-blocks-wrapper" style="background-color:white;">
+
+                    </div>
+                    <div class="right-blocks-wrapper">
+                        <div>
+                            <img src="~/Images/top.png" width="35px" height="47px" />
+                        </div>
+
+                        <div>
+                            <span>Заголовок</span>
+                        </div>
+
+                    </div>
+                    <div class="right-blocks-wrapper">
+                        <div>
+                            <img src="~/Images/botom.png" width="35px" height="47px" />
+                        </div>
+
+                        <div>
+                            <span>Подвал</span>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</main>
+
+@*
+        <div id="productDiv">
+        <button id="addProductBtn">Добавить продукт</button>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $('#addProductBtn').click(function() {
+            const data = {
+                name: 'Продукт', // Замените на данные, которые хотите отправить
+                price: 100
+            };
+
+            $.ajax({
+                url: '/Products/Create',
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify(data),
+                success: function(response) {
+                    console.log('Успех:', response);
+                },
+                error: function(xhr, status, error) {
+                    console.error('Ошибка:', error);
+                }
+            });
+        });
+    </script>
+
+        using (DocumentConstructorLeftData db = new DocumentConstructorLeftData() ) {
+        DocumentConstructorLeftData descriptionBusiness =
+            {
+
+
+            }
+
+
+        }
+
+*@

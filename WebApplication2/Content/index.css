@@ -1,4 +1,8 @@
-
+textarea{
+    width:100%;
+    display:block;
+    max-width:1000px;
+}
 #divForModelItems {
     align-items: center;
 }

@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Reflection.Emit;
+using System.Runtime.Remoting.Messaging;
 using System.Web;
 
 namespace WebApplication2.Models
@@ -13,5 +15,11 @@ namespace WebApplication2.Models
         public DbSet<DocumentConstructorLeftData> DocumentConstructorLeftDatas { get; set; }
         public DbSet<DocumentConstructor> DocumentConstructors { get; set; }
         public DbSet<DocumentConstructorCenterData> DocumentConstructorCenterDatas { get; set; }
+
+       
+
+
     }
+
+
 }

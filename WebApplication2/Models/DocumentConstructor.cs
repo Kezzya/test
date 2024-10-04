@@ -16,13 +16,13 @@ namespace WebApplication2.Models
         public string Title { get; set; }
         public int Npp { get; set; }
         public int? SizeTitle { get; set; }
-        public virtual ICollection<DocumentConstructorCenterData> Data { get; set; }
+        public virtual ICollection<DocumentConstructorCenterData> listBlocks { get; set; }
     }
     public class DocumentConstructorCenterData
     {
         public int DocumentConstructorCenterDataId { get; set; }
         public string Content { get; set; }
-        public int LeftDataId { get; set; }
+        public int DocumentConstructorLeftDataId { get; set; }
         public virtual DocumentConstructorLeftData Data { get; set; }
     }
 }

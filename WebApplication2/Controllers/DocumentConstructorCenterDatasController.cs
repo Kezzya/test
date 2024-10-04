@@ -17,7 +17,8 @@ namespace WebApplication2.Controllers
         // GET: DocumentConstructorCenterDatas
         public ActionResult Index()
         {
-            return View(db.DocumentConstructorCenterDatas.ToList());
+            var documentConstructorCenterDatas = db.DocumentConstructorCenterDatas.Include(d => d.Data);
+            return View(documentConstructorCenterDatas.ToList());
         }
 
         // GET: DocumentConstructorCenterDatas/Details/5
@@ -38,6 +39,7 @@ namespace WebApplication2.Controllers
         // GET: DocumentConstructorCenterDatas/Create
         public ActionResult Create()
         {
+            ViewBag.DocumentConstructorLeftDataId = new SelectList(db.DocumentConstructorLeftDatas, "DocumentConstructorLeftDataId", "Title");
             return View();
         }
 
@@ -45,8 +47,8 @@ namespace WebApplication2.Controllers
         // Чтобы защититься от атак чрезмерной передачи данных, включите определенные свойства, для которых следует установить привязку. Дополнительные 
         // сведения см. в разделе https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
- 
-        public ActionResult Create([Bind(Include = "DocumentConstructorCenterDataId,Title,Npp,Size")] DocumentConstructorCenterData documentConstructorCenterData)
+        [ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Include = "DocumentConstructorCenterDataId,Content,DocumentConstructorLeftDataId")] DocumentConstructorCenterData documentConstructorCenterData)
         {
             if (ModelState.IsValid)
             {
@@ -55,6 +57,7 @@ namespace WebApplication2.Controllers
                 return RedirectToAction("Index");
             }
 
+            ViewBag.DocumentConstructorLeftDataId = new SelectList(db.DocumentConstructorLeftDatas, "DocumentConstructorLeftDataId", "Title", documentConstructorCenterData.DocumentConstructorLeftDataId);
             return View(documentConstructorCenterData);
         }
 
@@ -70,6 +73,7 @@ namespace WebApplication2.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.DocumentConstructorLeftDataId = new SelectList(db.DocumentConstructorLeftDatas, "DocumentConstructorLeftDataId", "Title", documentConstructorCenterData.DocumentConstructorLeftDataId);
             return View(documentConstructorCenterData);
         }
 
@@ -78,7 +82,7 @@ namespace WebApplication2.Controllers
         // сведения см. в разделе https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "DocumentConstructorCenterDataId,Title,Npp,Size")] DocumentConstructorCenterData documentConstructorCenterData)
+        public ActionResult Edit([Bind(Include = "DocumentConstructorCenterDataId,Content,DocumentConstructorLeftDataId")] DocumentConstructorCenterData documentConstructorCenterData)
         {
             if (ModelState.IsValid)
             {
@@ -86,6 +90,7 @@ namespace WebApplication2.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.DocumentConstructorLeftDataId = new SelectList(db.DocumentConstructorLeftDatas, "DocumentConstructorLeftDataId", "Title", documentConstructorCenterData.DocumentConstructorLeftDataId);
             return View(documentConstructorCenterData);
         }
 

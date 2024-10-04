@@ -1,0 +1,42 @@
+﻿@model WebApplication2.Models.DocumentConstructorLeftData
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>DocumentConstructorLeftData</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Npp)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Npp)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SizeTitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SizeTitle)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.DocumentConstructorLeftDataId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -17,8 +17,8 @@ namespace WebApplication2.Controllers
         
         public ActionResult Index()
         {
-            
-            return View(db.DocumentConstructorLeftDatas.ToList().OrderBy(i => i.Npp));
+            var headers = db.DocumentConstructorLeftDatas.OrderBy(i => i.Npp).ToList();
+            return View(headers);
         }
 
         public ActionResult Edit()

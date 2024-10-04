@@ -1,0 +1,45 @@
+﻿@model IEnumerable<WebApplication2.Models.DocumentConstructorLeftData>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Npp)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SizeTitle)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Npp)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SizeTitle)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.DocumentConstructorLeftDataId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.DocumentConstructorLeftDataId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.DocumentConstructorLeftDataId })
+        </td>
+    </tr>
+}
+
+</table>
