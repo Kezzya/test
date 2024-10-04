@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Ajax.Utilities;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -51,9 +52,11 @@ namespace WebApplication2.Controllers
        
         public ActionResult Create([Bind(Include = "DocumentConstructorLeftDataId,Title,Npp,SizeTitle")] DocumentConstructorLeftData documentConstructorLeftData)
         {
+           
             if (ModelState.IsValid)
             {
-              
+
+             
                 //var maxNpp = db.DocumentConstructorLeftDatas.Max(i => (int?)i.Npp) ?? 0;
 
                 //// Устанавливаем Npp для нового элемента
@@ -62,9 +65,6 @@ namespace WebApplication2.Controllers
                 //// Добавляем новый элемент в контекст
                 //db.DocumentConstructorLeftDatas.Add(newItem);
                 //db.SaveChanges();
-
-
-
 
                 db.DocumentConstructorLeftDatas.Add(documentConstructorLeftData);
                 db.SaveChanges();
@@ -138,29 +138,57 @@ namespace WebApplication2.Controllers
             }
             base.Dispose(disposing);
         }
-        //DocumentConstructorLeftDatas/ChangeNpp/146
-        public ActionResult ChangeNpp(int id)
+        //DocumentConstructorLeftDatas/ChangeNpp/146?changeNumber=1
+        public ActionResult ChangeNpp(int id, int changeNumber)
         {
             var item = db.DocumentConstructorLeftDatas.Find(id);
-            if (item != null)
+            //db.DocumentConstructorLeftDatas.Where(i => i.Npp);
+            //if ((item.Npp + changeNumber) > 6 || (item.SizeTitle + changeNumber) < 1)
+            //{
+            //    return RedirectToAction("Index");
+            //}
+            item.Npp += changeNumber;
+          
+            //if (item != null)
+            //{
+            var previousItem = db.DocumentConstructorLeftDatas
+                .Where(i => i.Npp <= item.Npp)
+                .OrderByDescending(i => i.Npp)
+                .FirstOrDefault();
+
+            if (previousItem != null && previousItem.Npp == item.Npp)
             {
-                var previousItem = db.DocumentConstructorLeftDatas
-                    .Where(i => i.Npp <= item.Npp)
-                    .OrderByDescending(i => i.Npp)
-                    .FirstOrDefault();
 
-                if (previousItem != null)
-                {
-                    // Меняем местами Npp
-                    int tempNpp = item.Npp;
-                    item.Npp = previousItem.Npp;
-                    previousItem.Npp = tempNpp;
+                // Меняем местами Npp
+                int tempNpp = item.Npp;
+                item.Npp = previousItem.Npp;
+                previousItem.Npp = tempNpp;
 
-                    db.SaveChanges();
-                }
+                        db.SaveChanges();
+                //    }
+                //}
             }
-
+            db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        [HttpGet, ActionName("ChangeSizeTitle")]
+        public ActionResult ChangeSizeTitle(int id, int changeNumber)
+        {
+            
+            var item = db.DocumentConstructorLeftDatas.Find(id);
+            if ( (item.SizeTitle + changeNumber) > 6 || (item.SizeTitle + changeNumber) < 1)
+            {
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                item.SizeTitle += changeNumber;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+         
+            
         }
     }
 }

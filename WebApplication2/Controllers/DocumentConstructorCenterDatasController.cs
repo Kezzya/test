@@ -45,7 +45,7 @@ namespace WebApplication2.Controllers
         // Чтобы защититься от атак чрезмерной передачи данных, включите определенные свойства, для которых следует установить привязку. Дополнительные 
         // сведения см. в разделе https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
+ 
         public ActionResult Create([Bind(Include = "DocumentConstructorCenterDataId,Title,Npp,Size")] DocumentConstructorCenterData documentConstructorCenterData)
         {
             if (ModelState.IsValid)

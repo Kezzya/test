@@ -9,22 +9,20 @@ namespace WebApplication2.Models
     public class DocumentConstructor 
     {
         public int DocumentConstructorId { get; set; }
-        
     }
     public class DocumentConstructorLeftData
     {
         public int DocumentConstructorLeftDataId { get; set; }
         public string Title { get; set; }
         public int Npp { get; set; }
-        public string SizeTitle { get; set; }
-        public ICollection<DocumentConstructorCenterData> Data { get; set; }
+        public int? SizeTitle { get; set; }
+        public virtual ICollection<DocumentConstructorCenterData> Data { get; set; }
     }
     public class DocumentConstructorCenterData
     {
         public int DocumentConstructorCenterDataId { get; set; }
-        public string Title { get; set; }
-        public int Npp { get; set; }
-        public string Size { get; set; }
-        public DocumentConstructorLeftData Data { get; set; }
+        public string Content { get; set; }
+        public int LeftDataId { get; set; }
+        public virtual DocumentConstructorLeftData Data { get; set; }
     }
 }

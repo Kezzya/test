@@ -1,8 +1,33 @@
 
+#divForModelItems {
+    align-items: center;
+}
+.size1 {
+    font-size: 2rem
+}
+.size2 {
+    font-size: 1.7rem;
+    margin-left: 3px;
+}
+.size3 {
+    font-size: 1.4rem;
+    margin-left:5px;
+}
+.size4 {
+    font-size: 1.1rem;
+    margin-left: 10px;
+}
+.size5 {
+    font-size: 0.9rem;
+    margin-left: 15px;
+}
+.size6 {
+    font-size: 0.7rem;
+    margin-left: 20px;
+}
 .hidden {
     display: none ;
 }
- 
 .container {
     max-width: 1440px;
 }
@@ -54,8 +79,9 @@ div, ul, li, span, p {
 
 .list-buttons {
     margin-left: auto;
-    
-    margin-right: 0;
+  
+    align-items: center;
+    justify-content: center;
     white-space: nowrap;
 }
 
